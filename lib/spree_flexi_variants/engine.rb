@@ -32,11 +32,11 @@ module SpreeFlexiVariants
     initializer "spree.flexi_variants.register.calculators" do |app|
       app.config.spree.calculators.add_class('product_customization_types') unless app.config.spree.calculators.respond_to?(:product_customization_types)
       app.config.spree.calculators.product_customization_types += [
-                                                                    Spree::Calculator::Engraving,
+                                                                    #Spree::Calculator::Engraving,
                                                                     Spree::Calculator::AmountTimesConstant,
-                                                                    Spree::Calculator::ProductArea,
-                                                                    Spree::Calculator::CustomizationImage,
-                                                                    Spree::Calculator::NoCharge
+                                                                    #Spree::Calculator::ProductArea,
+                                                                    #Spree::Calculator::CustomizationImage,
+                                                                    #Spree::Calculator::NoCharge
                                                                    ]
     end
   end
