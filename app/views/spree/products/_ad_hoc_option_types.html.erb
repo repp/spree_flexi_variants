@@ -1,9 +1,10 @@
 <% if !!@product.ad_hoc_option_types && @product.ad_hoc_option_types.present? %>
   <% lookup = ActionView::LookupContext.new(ActionController::Base.view_paths, {formats: [:html]}) %>
+  <% section_title = @product.ad_hoc_option_types.first.option_type.presentation rescue Spree.t(:select_variant_options) %>
 
   <div id="ad_hoc_options">
     <div class='col-sm-12'>
-      <h3 class="product-section-title"><%= Spree.t(:select_variant_options) %></h3>
+      <h3 class="product-section-title"><%= section_title %></h3>
       <% if @product.ad_hoc_variant_exclusions.present? %>
         <h6 id="not_all_available">
           <%= Spree.t(:not_all_combinations_available) %>

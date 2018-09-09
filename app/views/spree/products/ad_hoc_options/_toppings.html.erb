@@ -3,7 +3,6 @@
   class_str += ' has_exclusions' if !@product.ad_hoc_variant_exclusions.empty?
 %>
 
-<label><%= option_type.presentation %></label>
 <% option_type.option_values.each do |ah_ov| %>
 
   <%
