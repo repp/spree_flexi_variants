@@ -17,7 +17,7 @@
   %>
 
   <label>
-    <%= check_box_tag "ad_hoc_option_values[#{option_type.id}][]", ah_ov.id.to_s, false, class: class_str %>
+    <%= check_box_tag "ad_hoc_option_values[#{option_type.id}][]", ah_ov.id.to_s, ah_ov.selected, class: class_str %>
     <span class="variant-description"><%= "#{ah_ov.option_value.presentation}" %></span>
     <% unless ah_ov.price_modifier.abs.zero? %>
       <span class="price diff"><%= "(#{plus_or_minus} #{Spree::Money.new(ah_ov.price_modifier.abs).to_s})" %></span>
