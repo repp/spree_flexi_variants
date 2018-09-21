@@ -3,8 +3,11 @@
   <ul class='list-group list-unstyled'>
     <% item.ad_hoc_option_values.each do |ad_hoc_option_value| %>
       <% unless ad_hoc_option_value.selected %>
-        <li>Add <%= ad_hoc_option_value.option_value.presentation %></li>
+        <li>ADD <%= ad_hoc_option_value.option_value.presentation %></li>
       <% end %>
+    <% end %>
+    <% item.eighty_sixed_toppings.each do |ad_hoc_option_value| %>
+        <li>REMOVE <%= ad_hoc_option_value.option_value.presentation %></li>
     <% end %>
     <% item.product_customizations.each do |customization| %>
       <% next if customization.customized_product_options.all? {|customized_product_option| customized_product_option.empty? } %>

@@ -40,5 +40,19 @@ module Spree
     def cost_money
       Spree::Money.new(cost_price, currency: currency)
     end
+
+    def eighty_sixed_toppings
+      removed_toppings = []
+      included_value_ids = ad_hoc_option_values.pluck(:id)
+      self.product.ad_hoc_option_types.each do |option_type|
+        option_type.ad_hoc_option_values.where(selected: true).each do |option_value|
+          unless included_value_ids.include?(option_value.id)
+            removed_toppings << option_type
+          end
+        end
+      end
+      removed_toppings
+    end
+
   end
 end
