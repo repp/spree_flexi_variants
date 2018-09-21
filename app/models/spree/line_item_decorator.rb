@@ -47,7 +47,7 @@ module Spree
       self.product.ad_hoc_option_types.each do |option_type|
         option_type.ad_hoc_option_values.where(selected: true).each do |option_value|
           unless included_value_ids.include?(option_value.id)
-            removed_toppings << option_type
+            removed_toppings << option_value
           end
         end
       end
