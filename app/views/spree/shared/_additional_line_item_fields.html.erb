@@ -2,7 +2,9 @@
   <%# TODO: group multi-select options (e.g. toppings) %>
   <ul class='list-group list-unstyled'>
     <% item.ad_hoc_option_values.each do |ad_hoc_option_value| %>
-      <li>Add <%= ad_hoc_option_value.option_value.presentation %></li>
+      <% unless ad_hoc_option_value.option_value.selected %>
+        <li>Add <%= ad_hoc_option_value.option_value.presentation %></li>
+      <% end %>
     <% end %>
     <% item.product_customizations.each do |customization| %>
       <% next if customization.customized_product_options.all? {|customized_product_option| customized_product_option.empty? } %>
