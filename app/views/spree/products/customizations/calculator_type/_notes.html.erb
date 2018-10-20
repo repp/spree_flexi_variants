@@ -1,0 +1,14 @@
+<%# render the (possibly shared) calculator %>
+
+<% cust_dom_id = "notes_input_#{product_customization_type.customizable_product_options.first.id}" %>
+
+<div class="col-md-<%= Spree.t(:variant_col_size) %> form-group">
+  <% option = product_customization_type.customizable_product_options.first %>
+  <div class="form-for-customizable-product-option notes">
+    <% unless product_customization_type.description.blank? %>
+      <p><%= product_customization_type.description  %></p>
+    <% end %>
+    <%= text_area_tag "#{param_prefix}[#{product_customization_type.customizable_product_options.first.id}]", "", id: cust_dom_id, class: "customization form-control", placeholder: option.description %>
+    <%= hidden_field_tag "customization_price", "0", class: "customization_price" %>
+  </div>
+</div>
