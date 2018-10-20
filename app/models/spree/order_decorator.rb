@@ -45,15 +45,15 @@ module Spree
     # I think the new line_item_options_match will cover this
     # https://github.com/spree/spree/blob/625b42ecc2c3d5c6d0ec463a8f718ce16b80d89a/core/app/models/spree/order.rb#L265
 
-    def find_line_item_by_variant(variant, options = {})
-      ad_hoc_option_value_ids = ( !!options[:ad_hoc_option_values] ? options[:ad_hoc_option_values] : [] )
-      product_customizations = ( !!options[:product_customizations] ? options[:product_customizations].map{|ids| ids.first.to_i} : [] )
-      line_items.detect do |li|
-        li.variant_id == variant.id &&
-           matching_configurations(li.ad_hoc_option_values, ad_hoc_option_value_ids) &&
-           matching_customizations(li.product_customizations, product_customizations)
-      end
-    end
+    #def find_line_item_by_variant(variant, options = {})
+    #  ad_hoc_option_value_ids = ( !!options[:ad_hoc_option_values] ? options[:ad_hoc_option_values] : [] )
+    #  product_customizations = ( !!options[:product_customizations] ? options[:product_customizations].map{|ids| ids.first.to_i} : [] )
+    #  line_items.detect do |li|
+    #    li.variant_id == variant.id &&
+    #       matching_configurations(li.ad_hoc_option_values, ad_hoc_option_value_ids) &&
+    #       matching_customizations(li.product_customizations, product_customizations)
+    #  end
+    #end
 
     def merge!(order, user = nil)
       # this is bad, but better than before
