@@ -25,6 +25,10 @@
           <div class='col-sm-<%= Spree.t(:variant_col_size) %>'>
           <%= render partial: partial_name, locals: {option_type: ad_hoc_option_type, class_str: class_str} %>
           </div>
+        <% elsif option_type.name.gsub(/(-)|(\s)/,"_").downcase[0..8] == 'checkbox_' %>
+          <div class='col-sm-<%= Spree.t(:variant_col_size) %>'>
+            <%= render partial: "spree/products/ad_hoc_options/toppings", locals: {option_type: ad_hoc_option_type, class_str: class_str} %>
+          </div>
         <% else %>
           <li>
             <% select_opts = { class: "#{class_str} form-control" } %>
