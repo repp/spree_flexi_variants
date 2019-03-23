@@ -1,18 +1,18 @@
 <div class='customizations'>
   <%# TODO: group multi-select options (e.g. toppings) %>
   <ul class='list-group list-unstyled'>
-    <% if item.ad_hoc_option_value.option_value.option_type.name.gsub(/(-)|(\s)/,"_").downcase[0..8] == 'checkbox_' or item.ad_hoc_option_value.option_value.option_type.name.downcase == 'toppings' %>
-      <% item.ad_hoc_option_values.each do |ad_hoc_option_value| %>
+    <% item.ad_hoc_option_values.each do |ad_hoc_option_value| %>
+      <% if ad_hoc_option_value.option_type.name.gsub(/(-)|(\s)/,"_").downcase[0..8] == 'checkbox_' or ad_hoc_option_value.option_type.name.downcase == 'toppings' %>
         <% unless ad_hoc_option_value.selected %>
           <li>ADD <%= ad_hoc_option_value.option_value.presentation %></li>
         <% end %>
-      <% end %>
-      <% item.eighty_sixed_toppings.each do |ad_hoc_option_value| %>
-        <li>REMOVE <%= ad_hoc_option_value.option_value.presentation %></li>
-      <% end %>
-    <% else %>
-      <% item.ad_hoc_option_values.each do |ad_hoc_option_value| %>
+      <% else %>
         <li><b><%= ad_hoc_option_value.option_value.option_type.presentation %>:</b> <%= ad_hoc_option_value.option_value.presentation %></li>
+      <% end %>
+    <% end %>
+    <% item.eighty_sixed_toppings.each do |ad_hoc_option_value| %>
+      <% if ad_hoc_option_value.option_type.name.gsub(/(-)|(\s)/,"_").downcase[0..8] == 'checkbox_' or ad_hoc_option_value.option_type.name.downcase == 'toppings' %>
+        <li>REMOVE <%= ad_hoc_option_value.option_value.presentation %></li>
       <% end %>
     <% end %>
     <% item.product_customizations.each do |customization| %>
