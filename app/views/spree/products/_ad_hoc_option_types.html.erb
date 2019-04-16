@@ -3,10 +3,10 @@
   <% section_title = @product.ad_hoc_option_types.first.option_type.presentation rescue Spree.t(:select_variant_options) %>
   <% section_title = 'Options' if @product.ad_hoc_option_types.count > 1 %>
   <% first_option_name = @product.ad_hoc_option_types.first.option_type.name.gsub(/(-)|(\s)|(_)/,"").downcase rescue '' %>
-  <% show_title = (@product.ad_hoc_option_types.count > 1 or (first_option_name != 'checkbox' and first_option_name != 'toppings')) %>
+  <% hide_title = (@product.ad_hoc_option_types.count == 1 and (first_option_name == 'checkbox' or first_option_name == 'toppings')) %>
   
   <div id="ad_hoc_options">
-    <% if show_title %>
+    <% unless hide_title %>
       <div class='col-sm-1a2'>
         <h3 class="product-section-title"><%= section_title %></h3>
         <% if @product.ad_hoc_variant_exclusions.present? %>
