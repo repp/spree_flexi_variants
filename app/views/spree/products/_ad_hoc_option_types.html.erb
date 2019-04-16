@@ -2,16 +2,20 @@
   <% lookup = ActionView::LookupContext.new(ActionController::Base.view_paths, {formats: [:html]}) %>
   <% section_title = @product.ad_hoc_option_types.first.option_type.presentation rescue Spree.t(:select_variant_options) %>
   <% section_title = 'Options' if @product.ad_hoc_option_types.count > 1 %>
-
+  <% first_option_name = @product.ad_hoc_option_types.first.option_type.name.gsub(/(-)|(\s)|(_)/,"").downcase rescue '' %>
+  <% show_title = (@product.ad_hoc_option_types.count > 1 or (first_option_name != 'checkbox' and first_option_name != 'toppings')) %>
+  
   <div id="ad_hoc_options">
-    <div class='col-sm-12'>
-      <h3 class="product-section-title"><%= section_title %></h3>
-      <% if @product.ad_hoc_variant_exclusions.present? %>
-        <h6 id="not_all_available">
-          <%= Spree.t(:not_all_combinations_available) %>
-        </h6>
-      <% end %>
-    </div>
+    <% if show_title %>
+      <div class='col-sm-1a2'>
+        <h3 class="product-section-title"><%= section_title %></h3>
+        <% if @product.ad_hoc_variant_exclusions.present? %>
+          <h6 id="not_all_available">
+            <%= Spree.t(:not_all_combinations_available) %>
+          </h6>
+        <% end %>
+      </div>
+    <% end %>
     <ul class="list-group list-unstyled">
       <% @product.ad_hoc_option_types.each do |ad_hoc_option_type| %>
         <%# ugly logic %>
