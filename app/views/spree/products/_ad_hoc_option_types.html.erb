@@ -18,7 +18,6 @@
     <% end %>
     <ul class="list-group list-unstyled">
       <% @product.ad_hoc_option_types.each do |ad_hoc_option_type| %>
-        <%= debug(@product.ad_hoc_option_types) %>
         <%# ugly logic %>
         <% option_type = ad_hoc_option_type.option_type %>
         <% class_str = 'ad-hoc-option-select' %>
